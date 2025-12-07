@@ -7,6 +7,7 @@
   align-items: center;
   gap: 25px;
   margin-top: -4%;
+  margin-left: -10%;
   /* Transparent Glass Effect */
   /* background: rgba(255, 255, 255, 0.05); */
   backdrop-filter: blur(2px);
