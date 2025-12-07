@@ -10,6 +10,10 @@ body {
     background: url("bg.jpg") no-repeat center center fixed;
     background-size: cover;
     font-family: Arial, sans-serif;
+    justify-content: center;
+    align-items: center;
+    margin-left: -180px;
+
 }
 
 .logo {
