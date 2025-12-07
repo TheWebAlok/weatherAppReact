@@ -143,6 +143,7 @@
   background: rgba(255, 255, 255, 0.06);
   padding: 6px 10px;
   border-radius: 12px;
+  width: 150px;
   border: 2px solid #245ac6;
   backdrop-filter: blur(5px);
   font-size: 15px;
