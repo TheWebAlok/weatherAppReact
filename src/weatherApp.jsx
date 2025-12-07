@@ -19,24 +19,18 @@ export default function WeatherApp() {
   };
 
   return (
-    <div className="weather-app container mt-4">
+    <div className="weather-app container ">
 
-      <div className="row">
-        <div className="col-md-2">
-          <h2 className="text-center text-warning heading mb-4">Check Weather in Your City</h2>
-
-        </div>
-
-        <div className="col-md-3">
+      <div className="row justify-content-center">
+        <h2 className="heading card card-text">Check weather</h2>
+        <div className="box search">
           <SearchBox updateInfo={updateInfo} />
-
         </div>
-
-        <div className="col-md-7">
+        <div className="box">
           <InfoBox Info={weatherInfo} />
         </div>
       </div>
+
     </div>
   );
-
 }

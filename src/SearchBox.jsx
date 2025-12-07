@@ -1,6 +1,6 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import "./SearchBox.css";
+// import "./SearchBox.css";
 import { useState } from "react";
 
 export default function SearchBox({ updateInfo }) {
@@ -64,7 +64,7 @@ export default function SearchBox({ updateInfo }) {
   };
 
   return (
-    <div className="searchBox">
+    <div className="searchBox mt-5 py-5">
       <form className="searchForm" onSubmit={handleSubmit} noValidate>
         <TextField
           id="city-name"
@@ -79,7 +79,7 @@ export default function SearchBox({ updateInfo }) {
             classes: { input: "search-input-inner" },
           }}
         />
-<br />
+        <br /><br />
         <Button
           variant="contained"
           type="submit"
@@ -90,7 +90,7 @@ export default function SearchBox({ updateInfo }) {
         </Button>
       </form>
 
-      {error && <p className="search-error">No such place exists!</p>}
+      {error && <p className="search-error text-danger">No such place exists!</p>}
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import './App.css'
 import WeatherApp from './weatherApp'
-
 function App() {
   return (
     <div className="app-shell">
