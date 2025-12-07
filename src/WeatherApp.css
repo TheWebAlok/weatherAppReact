@@ -1,11 +1,12 @@
 .weather-app {
   width: 110%;
-  height: 500px;
+  height: 580px;
   padding: 40px;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 25px;
+  margin-top: -4%;
   /* Transparent Glass Effect */
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(2px);
