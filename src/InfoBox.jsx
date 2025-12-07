@@ -97,7 +97,7 @@ export default function InfoBox({ Info = {} }) {
 
           <div style={{display:'flex', alignItems:'center', gap:12, flexWrap:'wrap'}}>
             <h2 className="info-city">{Info?.city || "Unknown"}</h2>
-            <IconComponent style={{ fontSize: 38, color: '#f6c24d' }} />
+            <IconComponent style={{ fontSize: 28, color: '#f6c24d' }} />
           </div>
 
           <div className="info-temp">Temperature: {Info?.temp}°C</div>
@@ -111,12 +111,12 @@ export default function InfoBox({ Info = {} }) {
           </div>
 
           {/* optional: small forecast row example (remove if you don't need) */}
-          {/* <div className="forecast-row">
+          <div className="forecast-row">
             <div className="forecast">Wed<br/>21°C</div>
             <div className="forecast">Thu<br/>24°C</div>
             <div className="forecast">Fri<br/>21°C</div>
             <div className="forecast">Sat<br/>24°C</div>
-          </div> */}
+          </div>
         </CardContent>
       </Card>
     </div>
