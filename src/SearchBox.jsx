@@ -9,28 +9,30 @@ export default function SearchBox({ updateInfo }) {
   const API_URL = "https://api.openweathermap.org/data/2.5/weather";
   const API_KEY = "42bf0b939696d4ce3be6e48abcf01ad2";
 
-  let getWeatherInfo = async () => {
+  // Accept a city parameter (was using outer `city` before)
+  let getWeatherInfo = async (cityName) => {
     try {
+      const q = encodeURIComponent(cityName.trim());
       let response = await fetch(
-        `${API_URL}?q=${city}&appid=${API_KEY}&units=metric`
+        `${API_URL}?q=${q}&appid=${API_KEY}&units=metric`
       );
       let jsonResponse = await response.json();
 
       if (jsonResponse.cod !== 200) {
-        throw new Error(jsonResponse.message);
+        throw new Error(jsonResponse.message || "Unable to fetch");
       }
 
       let result = {
-        city: city,
-        temp: jsonResponse.main.temp,
-        tempMin: jsonResponse.main.temp_min,
-        tempMax: jsonResponse.main.temp_max,
+        city: jsonResponse.name || cityName,
+        temp: Math.round(jsonResponse.main.temp),
+        tempMin: Math.round(jsonResponse.main.temp_min),
+        tempMax: Math.round(jsonResponse.main.temp_max),
         humidity: jsonResponse.main.humidity,
-        feels_like: jsonResponse.main.feels_like,
-        weather: jsonResponse.weather[0].description,
+        feelslike: Math.round(jsonResponse.main.feels_like),
+        description: jsonResponse.weather?.[0]?.description || "",
       };
 
-      console.log(result);
+      setError(false);
       return result;
     } catch (err) {
       console.error("Error fetching weather data:", err.message);
@@ -41,42 +43,54 @@ export default function SearchBox({ updateInfo }) {
 
   let handleChange = (evt) => {
     setCity(evt.target.value);
+    if (error) setError(false);
   };
 
   let handleSubmit = async (evt) => {
     evt.preventDefault();
     setError(false);
 
-    // ✅ Reset input field immediately
-    const searchQuery = city;
-    setCity(""); // Clears the input before fetching data
-
-    let newInfo = await getWeatherInfo(searchQuery);
-    if (newInfo) {
-      updateInfo(newInfo);
+    const searchQuery = city.trim();
+    if (!searchQuery) {
+      setError(true);
+      return;
     }
+
+    // Clear input immediately (matching your desired UX)
+    setCity("");
+
+    const newInfo = await getWeatherInfo(searchQuery);
+    if (newInfo) updateInfo(newInfo);
   };
 
   return (
     <div className="searchBox">
-      <form onSubmit={handleSubmit}>
+      <form className="searchForm" onSubmit={handleSubmit} noValidate>
         <TextField
           id="city-name"
-          label="City Name"
+          placeholder="Enter a City..."
           variant="outlined"
           required
           value={city}
           onChange={handleChange}
+          className="search-input"
+          InputProps={{
+            notched: false,
+            classes: { input: "search-input-inner" },
+          }}
         />
-        <br />
-        <br />
-
-        <Button variant="contained" type="submit">
+<br />
+        <Button
+          variant="contained"
+          type="submit"
+          className="search-button"
+          disableElevation
+        >
           Search
         </Button>
-
-        {error && <p style={{ color: "red" }}>No Such Place Exists!</p>}
       </form>
+
+      {error && <p className="search-error">No such place exists!</p>}
     </div>
   );
 }

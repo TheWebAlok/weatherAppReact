@@ -20,5 +20,9 @@ dist-ssr
 *.suo
 *.ntvs*
 *.njsproj
+*.njsproj
 *.sln
 *.sw?
+
+# VS Code Local History (must ignore)
+.history/

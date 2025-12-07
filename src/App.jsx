@@ -1,17 +1,12 @@
-
 import './App.css'
-import InfoBox from './InfoBox'
-import SearchBox from './SearchBox'
 import WeatherApp from './weatherApp'
+
 function App() {
-  
   return (
-    <>
-      {/* <InfoBox/>
-      <SearchBox/> */}
-      <WeatherApp/>
-    </>
+    <div className="app-shell">
+      <WeatherApp />
+    </div>
   )
 }
 
-export default App
+export default App;
